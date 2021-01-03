@@ -3,8 +3,6 @@ import Post from "../components/post";
 import AddPost from "../components/addpost";
 import Superdelete from "../components/superdelete";
 import db from "../lib/firebase";
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import Editpost from "../components/editpost";
 
 function List() {
 
@@ -60,26 +58,16 @@ function List() {
     return (
 
         <div className="container">
-            <Router>
+ 
                 <h1>Posts: </h1>
                 <AddPost changeFunction={refreshData} />
 
-                <Switch>
-                  {/*  {posts.map((post) => (
-                        <Route exact path='/' key={post.id} component={() => <Post post={post} key={post.id} changeFunction={refreshData} />} />
-                  ))}*/}
-
-                    <Route exact path='/editpost/:id' component={Editpost}></Route>
-
-                </Switch>
-               
                 {posts.map((post) => (
                     <Post post={post} key={post.id} changeFunction={refreshData} />
                 ))}
               
-
                 <Superdelete changeFunction={refreshData} />
-            </Router>
+  
         </div>
 
     );
