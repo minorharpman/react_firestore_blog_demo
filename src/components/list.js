@@ -57,9 +57,9 @@ function List() {
     //https://ui.dev/react-router-v4-pass-props-to-components/
     return (
 
-        <div className="container">
+        <div >
  
-                <h1>Posts: </h1>
+          
                 <AddPost changeFunction={refreshData} />
 
                 {posts.map((post) => (
