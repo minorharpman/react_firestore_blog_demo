@@ -1,19 +1,84 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import db from "../lib/firebase";
 
 function Editpost(props) {
 
     const { params } = props.match;
-   // console.log(props.location.pathname);
+    const [post, setPost] = useState([]);
+   const [title, setTitle] = useState("");
+    // console.log(props.location.pathname);
     console.log(params.id);
+
+    useEffect(() => {
+        getData(params.id);
+    }, []);
+
+    const getData = async (id) => {
+
+        //console.log("id: " + id);
+        await db.collection("posts").doc(id).get().then(doc => {
+            const data = doc.data();
+            console.log(data); 
+            setPost(data);
+        }
+        ).catch(function (error) {
+            console.error("Error : ", error);
+        });
+
+
+
+    };
+
+    const handleSubmit = async (id) => {
+        console.log("id: " + String(id));
+
+
+
+        //EdIT
+     
+        await db.collection("posts").doc(id).update({
+            title: title
+        }).then(function () {
+            console.log("Document successfully Updated!");
+            props.changeFunction();
+        }).catch(function (error) {
+            console.error("Error : ", error);
+        });
+
+
+
+    };
+
+    //https://stackoverflow.com/questions/37427508/react-changing-an-uncontrolled-input
     return (
 
         <div className="row  mt-4 mb-4 p-4 bg-warning ">
 
-           <div className="col" >Edit post:</div> 
-           <div className="col" >ID:{params.id}</div> 
-           <div className="col"><Link className="btn btn-primary" to={"/"} >Close</Link></div>  
+            <div className="col" >Edit post:</div>
+            <div className="col" >ID:{params.id}   {post.title}</div>
+            <div className="col-md-6" >
+                <input
+                    type="text"
+                    className="form-control"
+                    value={post.title}
+                    onChange={(e) => setTitle(e.target.value)}
+                   
+           
+                />
+
+            </div>
+            <div className="col" > <button className="btn btn-danger" onClick={(e) => handleSubmit(params.id)} >Save  </button></div>
+            <div className="col"><Link className="btn btn-primary" to={"/"} >Close</Link></div>
+
+
+
+
+
+
+
+
         </div>
 
 
