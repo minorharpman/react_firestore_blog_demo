@@ -18,18 +18,6 @@ function Post(props) {
              console.error("Error removing document: ", error);
          });
 
-        //EdIT
-        /*
-        await db.collection("posts").doc(id).update({
-            title: 'xxxxxxxxxxxxxxxxxxxxxxxxxxx'
-        }).then(function () {
-            console.log("Document successfully Updated!");
-            props.changeFunction();
-        }).catch(function (error) {
-            console.error("Error : ", error);
-        });
-*/
-
 
     };
 

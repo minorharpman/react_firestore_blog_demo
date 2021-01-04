@@ -1,6 +1,10 @@
-npx create-react-app react_forum_demo_bootstrap
 
-cd react_forum_demo_bootstrap
+
+Köztes verzio bemutatása:
+
+npx create-react-app react_firestore_blog_demo
+
+cd react_firestore_blog_demo
 
 npm install
 
