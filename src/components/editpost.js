@@ -39,6 +39,9 @@ function Editpost(props) {
         //EdIT
      
         await db.collection("posts").doc(id).update({
+            ///////////////////
+            /////!!!! Ha nem változtatom akkor Ures lesz
+            
             title: title
         }).then(function () {
             console.log("Document successfully Updated!");
