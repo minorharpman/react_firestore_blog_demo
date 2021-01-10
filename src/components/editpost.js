@@ -24,6 +24,7 @@ function Editpost(props) {
             const data = doc.data();
             console.log(data); 
             setPost(data);
+            setTitle(data.title );
         }
         ).catch(function (error) {
             console.error("Error : ", error);
@@ -72,7 +73,7 @@ function Editpost(props) {
                 <input
                     type="text"
                     className="form-control"
-                    value={title || post.title || ''}
+                    value={title }
                     onChange={(e) => setTitle(e.target.value )}
            
                 />
